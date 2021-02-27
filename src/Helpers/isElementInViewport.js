@@ -3,7 +3,7 @@
  * http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport#answer-7557433
  */
 
-function isElementInViewport (el) {
+function isElementInViewport(el) {
 	if (el === undefined || el === null) {
 		return false;
 	}
@@ -18,4 +18,4 @@ function isElementInViewport (el) {
 	return rect.top >= 0;
 }
 
-module.exports = isElementInViewport;
+export default isElementInViewport;

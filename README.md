@@ -1,16 +1,16 @@
 ## Note
 This project is built on top of https://github.com/ianwitherow/react-filterable-table
-# react-filterable-table
+# react-data-table
 Extendable table with filtering, sorting, paging, and more. Hold down shift to sort on multiple fields.
 
 
 [Demo](https://ianwitherow.github.io/react-filterable-table/example/index.html)
 
-[![NPM](https://nodei.co/npm/react-filterable-table.png?compact=true)](https://npmjs.org/package/react-filterable-table)
+[![NPM](https://nodei.co/npm/@sksankarraj/react-data-table.png?compact=true)](https://npmjs.org/package/@sksankarraj/react-data-table)
 
 
 ## Install
-`npm install react-filterable-table`
+`npm install @sksankarraj/react-data-table`
 
 ## Basic usage:
 

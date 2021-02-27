@@ -1,6 +1,6 @@
 import React from 'react';
-const hasValue = require('../Helpers/hasValue');
-const getValue = require('../Helpers/getValue');
+import hasValue from '../Helpers/hasValue';
+import getValue from '../Helpers/getValue';
 
 class Table extends React.Component {
 
@@ -49,7 +49,7 @@ class Table extends React.Component {
 			// Use the displayName property if supplied, otherwise use name
 			let fieldDisplayName = field.displayName !== undefined ? field.displayName : field.name;
 			const renderProps = { field, ...this.props };
-			if (typeof(field.thRender) === "function") {
+			if (typeof (field.thRender) === "function") {
 				fieldDisplayName = field.thRender(renderProps);
 			}
 
@@ -63,7 +63,7 @@ class Table extends React.Component {
 
 		const rows = records.map((record, i) => {
 			let trClassName = this.props.trClassName || null;
-			if (typeof(this.props.trClassName) === "function") {
+			if (typeof (this.props.trClassName) === "function") {
 				trClassName = this.props.trClassName(record, i);
 			}
 
@@ -91,8 +91,8 @@ class Table extends React.Component {
 				}
 
 				// If tdClassName is a function, call it with our renderProps
-				if (typeof(field.tdClassName) === "function") {
-					 tdClassName = field.tdClassName(renderProps);
+				if (typeof (field.tdClassName) === "function") {
+					tdClassName = field.tdClassName(renderProps);
 				}
 
 				// Determine if the body is empty
@@ -113,9 +113,9 @@ class Table extends React.Component {
 				}
 
 				let tdContent = hasValue(recordBody)
-					?  <span className={spanClassName} onClick={field.exactFilterable ? () => addExactFilter(getValue(record, field.name), field.name, (fieldDisplayName)) : null}>
-							{recordBody}
-						</span>
+					? <span className={spanClassName} onClick={field.exactFilterable ? () => addExactFilter(getValue(record, field.name), field.name, (fieldDisplayName)) : null}>
+						{recordBody}
+					</span>
 					: null;
 
 				return (
@@ -147,7 +147,7 @@ class Table extends React.Component {
 
 								return (
 									<td key={i} className={field.footerTdClassName}>
-										{(typeof field.footerValue === "function" ? field.footerValue(renderProps) : field.footerValue) || '' }
+										{(typeof field.footerValue === "function" ? field.footerValue(renderProps) : field.footerValue) || ''}
 									</td>
 								)
 							})
@@ -164,24 +164,24 @@ class Table extends React.Component {
 		}
 
 		return (
-			rows.length === 0 ? 
+			rows.length === 0 ?
 				(<div>{this.props.noFilteredRecordsMessage || 'There are no records to display.'}</div>)
-			:
-			<div>
-				<table className={tableClassName} style={this.props.style} ref="table">
-					<thead>
-						<tr>
-							{headerCells}
-						</tr>
-					</thead>
-					<tbody>
-						{rows}
-					</tbody>
-					{tfoot}
-				</table>
-			</div>
+				:
+				<div>
+					<table className={tableClassName} style={this.props.style} ref="table">
+						<thead>
+							<tr>
+								{headerCells}
+							</tr>
+						</thead>
+						<tbody>
+							{rows}
+						</tbody>
+						{tfoot}
+					</table>
+				</div>
 		);
 	}
 }
 
-module.exports = Table;
+export default Table;

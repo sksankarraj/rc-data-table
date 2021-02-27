@@ -1,5 +1,5 @@
-const hasValue = require('./hasValue');
-const getValue = require('./getValue');
+import hasValue from './hasValue';
+import getValue from './getValue';
 
 function FilterAndSort(array, options) {
 	array = array || [];
@@ -62,7 +62,7 @@ function MultiSort(array, keys) {
 
 	// via
 	// https://stackoverflow.com/questions/5223/length-of-javascript-object-ie-associative-array
-	var obLen = function(obj) {
+	var obLen = function (obj) {
 		var size = 0, key;
 		for (key in obj) {
 			if (obj.hasOwnProperty(key))
@@ -71,11 +71,11 @@ function MultiSort(array, keys) {
 		return size;
 	};
 
-	var obIx = function(obj, ix) {
+	var obIx = function (obj, ix) {
 		return Object.keys(obj)[ix];
 	};
 
-	var keySort = function(a, b, d) {
+	var keySort = function (a, b, d) {
 		d = d !== null ? d : 1;
 
 		a = (hasValue(a)) ? a : null;
@@ -108,15 +108,15 @@ function MultiSort(array, keys) {
 	if (!KL)
 		return array.sort(keySort);
 
-	for ( var k in keys) {
+	for (var k in keys) {
 		// asc unless desc or skip
-		keys[k] = 
-			keys[k] == 'desc' || keys[k] == -1  ? -1 
-			: (keys[k] == 'skip' || keys[k] === 0 ? 0 
-			: 1);
+		keys[k] =
+			keys[k] == 'desc' || keys[k] == -1 ? -1
+				: (keys[k] == 'skip' || keys[k] === 0 ? 0
+					: 1);
 	}
 
-	array.sort(function(a, b) {
+	array.sort(function (a, b) {
 		var sorted = 0, ix = 0;
 
 		while (sorted === 0 && ix < KL) {
@@ -132,4 +132,4 @@ function MultiSort(array, keys) {
 	return array;
 };
 
-module.exports = FilterAndSort;
+export default FilterAndSort;

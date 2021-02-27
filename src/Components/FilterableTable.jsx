@@ -393,4 +393,4 @@ class FilterableTable extends React.Component {
 	}
 }
 
-module.exports = FilterableTable;
+export default FilterableTable;

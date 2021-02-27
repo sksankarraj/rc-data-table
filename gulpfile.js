@@ -1,10 +1,9 @@
-﻿const path = require('path');
-const gulp = require('gulp');
+﻿const gulp = require('gulp');
 const gutil = require('gulp-util');
 const webpack = require('webpack')
 const webpackConfig = require('./webpack.config.js');
 const webpackExampleConfig = require('./webpack.example.config.js');
-const less = require('gulp-less');
+const sass = require('gulp-sass');
 
 
 // Build the main library
@@ -18,15 +17,15 @@ gulp.task('build', function () {
 		}));
 		console.log("Build complete.");
 	});
-	return gulp.src('./src/**/*.less')
-		.pipe(less({
-			paths: [path.join(__dirname, 'dist')]
-		}))
+	return gulp.src('./src/**/*.scss')
+		.pipe(sass({
+			outputStyle: 'compressed'
+		}).on('error', sass.logError))
 		.pipe(gulp.dest('./dist'));
 });
 
 // Build the example
-gulp.task('example', function () {
+gulp.task('example', function (done) {
 	console.log("Building examples!");
 
 	webpack(webpackExampleConfig, function (err, stats) {
@@ -40,9 +39,9 @@ gulp.task('example', function () {
 			.pipe(gulp.dest('./example-alt/js/dist'));
 		console.log("Build complete.");
 	});
-
+	done();
 });
 
-gulp.task('watch', ['build'], function () {
+gulp.task('watch', gulp.series('build', function () {
 	gulp.watch('**/*.js*', ['build']);
-});
+}));

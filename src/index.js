@@ -1,3 +1,3 @@
-const FilterableTable = require('./Components/FilterableTable.jsx');
-module.exports = FilterableTable;
+import FilterableTable from './Components/FilterableTable.jsx';
+export default FilterableTable;
 export { FilterableTable };
