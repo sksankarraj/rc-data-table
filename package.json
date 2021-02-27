@@ -1,14 +1,16 @@
 {
-  "name": "react-data-table",
-  "version": "0.4.0",
+  "name": "react-simple-data-table",
+  "version": "1.0.0",
   "description": "Extendable table with filtering, sorting, paging, and more",
   "main": "dist/react-filterable-table.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp build",
+    "example": "gulp example",
+    "publish": "gulp build && npm publish"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sksankarraj/react-filterable-table.git"
+    "url": "https://github.com/sksankarraj/react-data-table.git"
   },
   "keywords": [
     "react",
@@ -43,7 +45,7 @@
     "less-loader": "^2.2.3",
     "webpack": "^1.13.0"
   },
-  "homepage": "https://github.com/sksankarraj/react-filterable-table",
+  "homepage": "https://github.com/sksankarraj/react-data-table",
   "author": "Sankar Raj",
   "license": "MIT",
   "resolutions": {
