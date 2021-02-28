@@ -3,7 +3,6 @@ import Table from './Table';
 import Header from './Header';
 import Pager from 'react-pager';
 import FilterAndSort from '../Helpers/FilterAndSort';
-import axios from 'axios';
 import isElementInViewport from '../Helpers/isElementInViewport';
 
 class FilterableTable extends React.Component {
@@ -50,7 +49,6 @@ class FilterableTable extends React.Component {
 			}
 		}
 
-		axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 	}
 
 	static get defaultProps() {
@@ -118,8 +116,8 @@ class FilterableTable extends React.Component {
 			this.setData(this.props.data);
 		} else {
 			// Load data from endpoint
-			axios.get(this.props.dataEndpoint)
-				.then(response => response.data)
+			fetch(this.props.dataEndpoint)
+				.then(response => response.json())
 				.then(entries => {
 					this.setData(entries);
 				})

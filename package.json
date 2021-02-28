@@ -1,12 +1,11 @@
 {
-  "name": "@sksankarraj/react-data-table",
-  "version": "1.0.0",
+  "name": "rc-data-table",
+  "version": "0.0.2",
   "description": "Extendable table with filtering, sorting, paging, and more",
-  "main": "dist/react-filterable-table.js",
+  "main": "dist/rc-data-table.js",
   "scripts": {
     "build": "gulp build",
-    "example": "gulp example",
-    "publish": "gulp build && npm publish --access=public"
+    "example": "gulp example"
   },
   "repository": {
     "type": "git",
@@ -22,7 +21,6 @@
     "json"
   ],
   "dependencies": {
-    "axios": "^0.21.1",
     "react-pager": "^1.3.3"
   },
   "peerDependencies": {

@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack')
 
 let entry = {};
-entry['react-filterable-table'] = [path.resolve(__dirname, 'src/index.js')];
+entry['rc-data-table'] = [path.resolve(__dirname, 'src/index.js')];
 
 module.exports = {
 	context: path.resolve(__dirname),
@@ -10,7 +10,8 @@ module.exports = {
 	mode: 'production',
 	output: {
 		path: path.join(__dirname, 'dist'),
-		filename: '[name].js'
+		filename: '[name].js',
+		globalObject: 'this'
 	},
 	module: {
 		rules: [
@@ -49,7 +50,7 @@ module.exports = {
 			minChunks: 2,
 			maxAsyncRequests: 5,
 			maxInitialRequests: 3,
-			name: 'true',
+			name: 'DataTable',
 			cacheGroups: {
 				default: {
 					minChunks: 1,
@@ -74,6 +75,6 @@ module.exports = {
 		path: path.join(__dirname, 'dist'),
 		filename: '[name].js',
 		libraryTarget: 'umd',
-		library: 'FilterableTable'
+		library: 'rc-data-table'
 	}
 }

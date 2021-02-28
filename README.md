@@ -1,21 +1,24 @@
 ## Note
-This project is built on top of https://github.com/ianwitherow/react-filterable-table
+This project is built on top of https://github.com/ianwitherow/react-filterable-table.
+
+| WARNING: This Project is still in development phase! |
+| --- |
 # react-data-table
 Extendable table with filtering, sorting, paging, and more. Hold down shift to sort on multiple fields.
 
 
 [Demo](https://ianwitherow.github.io/react-filterable-table/example/index.html)
 
-[![NPM](https://nodei.co/npm/@sksankarraj/react-data-table.png?compact=true)](https://npmjs.org/package/@sksankarraj/react-data-table)
+[![NPM](https://nodei.co/npm/rc-data-table.png?compact=true)](https://npmjs.org/package/rc-data-table)
 
 
 ## Install
-`npm install @sksankarraj/react-data-table`
+`npm install rc-data-table`
 
 ## Basic usage:
 
 ```javascript
-const FilterableTable = require('react-filterable-table');
+const FilterableTable = require('rc-data-table');
 
 // Data for the table to display; can be anything
 const data = [
@@ -78,7 +81,7 @@ const fields = [
 * `pagerBottomClassName` - `string` - Specify the className for the bottom pager
 * `namespace` - `string` - The app saves settings (currently only page size) to localStorage. Namespace prevents overriding settings from other pages/apps where this is used. Use the same namespace across implementations that should share the settings. Default: 'react-filterable-table'
 * `onFilterRemoved` - `fn` - Callback for when a filter is removed by clicking the 'x' next to it (or when called manually, e.g., `this.refs.FilterableTable.removeExactFilter`). Function is called with the filter object that was removed, as well as the event that fired it
-
+* `filterPlaceholder` - `string` - Specify the placeholder text for the filter input box.
 
 ## `field` Props
 

@@ -1,9 +1,9 @@
 src
-dist/example.js
-example
+*example*
 .babelrc
 .gitignore
-gulpfile
+gulpfile.js
 npm-debug.log
 webpack.config.js
 webpack.example.config.js
+*.tgz
