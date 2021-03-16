@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sksankarraj/react-data-table.git"
+    "url": "https://github.com/sksankarraj/rc-data-table.git"
   },
   "keywords": [
     "react",
@@ -24,14 +24,17 @@
     "react-pager": "^1.3.3"
   },
   "peerDependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react": "^16.8.3 || ^17",
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
     "@babel/plugin-proposal-object-rest-spread": "^7.13.8",
     "@babel/preset-env": "^7.13.8",
     "@babel/preset-react": "^7.12.13",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.1",
     "babel-loader": "^8.2.2",
     "gulp": "^4.0.2",
     "gulp-sass": "^4.1.0",
@@ -41,7 +44,7 @@
     "webpack": "^5.24.2",
     "webpack-stream": "^6.1.2"
   },
-  "homepage": "https://github.com/sksankarraj/react-data-table",
+  "homepage": "https://github.com/sksankarraj/rc-data-table",
   "author": "Sankar Raj",
   "license": "MIT",
   "resolutions": {
