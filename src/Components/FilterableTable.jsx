@@ -217,6 +217,8 @@ class FilterableTable extends React.Component {
 	updatePage(page) {
 		this.setState({ page });
 		this.scrollIntoView();
+		const { pageSize } = this.state;
+		this.props.onPageChanged(page, pageSize);
 	}
 
 	updatePageSize(event) {
@@ -333,6 +335,8 @@ class FilterableTable extends React.Component {
 		let totalPages = (filteredEntries && filteredEntries.length > 0) ?
 			Math.ceil(filteredEntries.length / this.state.pageSize)
 			: 0;
+
+		totalPages = this.props.totalRecords ? Math.ceil(this.props.totalRecords / this.state.pageSize) : totalPages;
 
 		let topPager = this.state.loading || this.state.entries.length === 0 || this.props.pagersVisible === false || this.props.topPagerVisible === false ? '' :
 			<Pager total={totalPages}

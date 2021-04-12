@@ -48,6 +48,10 @@ let fields = [
 	{ name: 'job', displayName: "Occupation", inputFilterable: true, exactFilterable: true, sortable: true }
 ];
 
+function pageChange (page, size) {
+	console.log(page, size);
+}
+
 
 ReactDOM.render(
 	<div>
@@ -56,6 +60,8 @@ ReactDOM.render(
 			initialSort="name"
 			data={data}
 			fields={fields}
+			totalRecords={2000}
+			onPageChanged={pageChange}
 			filterPlaceholder="Search"
 			roRecordsMessage="There are no people to display"
 			noFilteredRecordsMessage="No people match your filters!"

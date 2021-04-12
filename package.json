@@ -1,11 +1,14 @@
 {
   "name": "rc-data-table",
-  "version": "0.0.2",
+  "version": "0.1.3",
   "description": "Extendable table with filtering, sorting, paging, and more",
   "main": "dist/rc-data-table.js",
   "scripts": {
     "build": "gulp build",
     "example": "gulp example"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
