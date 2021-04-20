@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import Table from './Table';
 import Header from './Header';
+import Loader from './circleLoader';
 import Pager from 'react-pager';
 import FilterAndSort from '../Helpers/FilterAndSort';
 import isElementInViewport from '../Helpers/isElementInViewport';
@@ -10,7 +11,7 @@ class FilterableTable extends React.Component {
 		super(props)
 
 		this.state = {
-			loading: false,
+			loading: this.props.loading,
 			entries: this.props.data || [],
 			sortFields: [{ name: this.props.initialSort, reverse: (typeof this.props.initialSortDir === "boolean") ? !this.props.initialSortDir : false }],
 			filter: '',
@@ -19,6 +20,7 @@ class FilterableTable extends React.Component {
 			totalPages: 1,
 			visiblePages: 5,
 			page: 0,
+			currentPage: this.props.currentPage,
 			pageSize: +localStorage.getItem(this.props.namespace + '.PageSize') || this.props.pageSize || 10,
 			shiftDown: false
 		}
@@ -68,12 +70,7 @@ class FilterableTable extends React.Component {
 		window.addEventListener("keyup", this.keyupEventListener, false);
 	}
 
-	componentWillUnmount() {
-		window.removeEventListener("keydown", this.keydownEventListener, false);
-		window.removeEventListener("keyup", this.keyupEventListener, false);
-	}
-
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		// If the `data` prop changes, make sure we run our onDataReceived callback (if supplied)
 		// and set our states
 		if (nextProps.hasOwnProperty('data') && nextProps.data !== this.props.data) {
@@ -153,7 +150,9 @@ class FilterableTable extends React.Component {
 			filter,
 			page: 0
 		});
-
+		if (this.props.paginationOnServer) {
+			this.props.filterData(filter);
+		}
 		this.scrollIntoView();
 	}
 
@@ -215,10 +214,14 @@ class FilterableTable extends React.Component {
 
 
 	updatePage(page) {
-		this.setState({ page });
-		this.scrollIntoView();
 		const { pageSize } = this.state;
-		this.props.onPageChanged(page, pageSize);
+		if (this.props.paginationOnServer) {
+			this.setState({ page: 0, currentPage: page });
+			this.props.onPageChanged(page, pageSize);
+		} else {
+			this.setState({ page });
+		}
+		this.scrollIntoView();
 	}
 
 	updatePageSize(event) {
@@ -253,7 +256,7 @@ class FilterableTable extends React.Component {
 		if (!append) {
 			sortFields = [sortField];
 		}
-
+		this.props.serverSort(sortFields);
 		this.setState({
 			sortFields,
 			page: 0
@@ -281,8 +284,8 @@ class FilterableTable extends React.Component {
 		let loading = this.state.loading &&
 			(
 				this.props.loadingMessage ||
-				<div className="well text-center">
-					Loading...
+				<div className="text-center">
+					<Loader />
 				</div>
 			)
 
@@ -304,7 +307,8 @@ class FilterableTable extends React.Component {
 			filter: this.state.filter,
 			exactFilters: this.state.exactFilters,
 			sortFields: this.state.sortFields,
-			fields: fields
+			fields: fields,
+			SSP: this.props.paginationOnServer
 		});
 
 
@@ -340,7 +344,7 @@ class FilterableTable extends React.Component {
 
 		let topPager = this.state.loading || this.state.entries.length === 0 || this.props.pagersVisible === false || this.props.topPagerVisible === false ? '' :
 			<Pager total={totalPages}
-				current={this.state.page}
+				current={ this.props.paginationOnServer ? this.state.currentPage : this.state.page }
 				visiblePages={this.state.visiblePages}
 				onPageChanged={this.updatePage}
 				className={this.props.pagerTopClassName || "pagination-sm pull-right"}
@@ -349,7 +353,7 @@ class FilterableTable extends React.Component {
 
 		let bottomPager = this.state.loading || this.state.entries.length === 0 || this.props.pagersVisible === false || this.props.bottomPagerVisible === false ? '' :
 			<Pager total={totalPages}
-				current={this.state.page}
+				current={ this.props.paginationOnServer ? this.state.currentPage : this.state.page }
 				visiblePages={this.state.visiblePages}
 				onPageChanged={this.updatePage}
 				className={this.props.pagerBottomClassName}

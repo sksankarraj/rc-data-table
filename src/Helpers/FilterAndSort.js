@@ -13,9 +13,9 @@ function FilterAndSort(array, options) {
 	const filterableFields = fields.filter(field => {
 		return field.inputFilterable;
 	});
-
-
-	let records = !hasValue(filter)
+	let records = array;
+	if (!options.SSP) {
+		records = !hasValue(filter)
 		? array
 		: array.filter(record => {
 			// create array of filterable fields, then use Array.some to return the value, instead of having an OR for each one.
@@ -24,6 +24,8 @@ function FilterAndSort(array, options) {
 				return hasValue(recordValue) && recordValue.toLowerCase().indexOf(filter.toLowerCase()) > -1;
 			});
 		});
+	}
+
 
 	// Check exact filters
 	if (exactFilters.length > 0) {

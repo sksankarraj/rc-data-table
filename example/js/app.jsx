@@ -52,6 +52,10 @@ function pageChange (page, size) {
 	console.log(page, size);
 }
 
+function filterData (filter) {
+	console.log(filter);
+}
+
 
 ReactDOM.render(
 	<div>
@@ -59,9 +63,12 @@ ReactDOM.render(
 			namespace="People"
 			initialSort="name"
 			data={data}
+			loading={true}
+			currentPage={1}
 			fields={fields}
 			totalRecords={2000}
 			onPageChanged={pageChange}
+			filterData={filterData}
 			filterPlaceholder="Search"
 			roRecordsMessage="There are no people to display"
 			noFilteredRecordsMessage="No people match your filters!"

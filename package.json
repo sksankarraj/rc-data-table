@@ -1,6 +1,6 @@
 {
   "name": "rc-data-table",
-  "version": "0.1.3",
+  "version": "0.1.12",
   "description": "Extendable table with filtering, sorting, paging, and more",
   "main": "dist/rc-data-table.js",
   "scripts": {
